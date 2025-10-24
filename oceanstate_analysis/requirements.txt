@@ -1,4 +1,4 @@
--e .
+-e.
 black
 flake8
 isort
