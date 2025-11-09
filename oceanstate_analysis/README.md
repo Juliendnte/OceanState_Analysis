@@ -39,9 +39,9 @@ A project school to analys the evolution of ocean state
 │
 ├── setup.cfg          <- Configuration file for flake8
 │
-└── oceanstate_analysis   <- Source code for use in this project.
+└── analysis   <- Source code for use in this project.
     │
-    ├── __init__.py             <- Makes oceanstate_analysis a Python module
+    ├── __init__.py             <- Makes analysis a Python module
     │
     ├── config.py               <- Store useful variables and configuration
     │
@@ -54,7 +54,12 @@ A project school to analys the evolution of ocean state
     │   ├── predict.py          <- Code to run model inference with trained models          
     │   └── train.py            <- Code to train models
     │
-    └── plots.py                <- Code to create visualizations
+    ├── plots.py                <- Code to create visualizations
+    │
+    ├── preprocessing.py
+    |
+    │
+    └── utis.py
 ```
 
 --------
