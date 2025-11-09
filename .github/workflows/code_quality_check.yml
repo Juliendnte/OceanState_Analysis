@@ -23,10 +23,10 @@ jobs:
         pip install black flake8 isort
         
     - name: Check formatting with Black
-      run: black --check oceanstate_analysis
+      run: black --check analysis
       
     - name: Check imports with isort
-      run: isort --check --diff oceanstate_analysis
+      run: isort --check --diff analysis
       
     - name: Lint with flake8
-      run: flake8 oceanstate_analysis
+      run: flake8 analysis
