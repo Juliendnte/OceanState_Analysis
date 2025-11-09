@@ -45,9 +45,9 @@ EXTERNAL_DATA_FILES = {}
 # Noms des colonnes importantes
 COLUMN_NAMES = {
     "seawater_ph": {
-        "date": "Day",
-        "ph": "ocean_ph",
-        "ph_yearly": "ocean_ph_yearly_average"
+        "Day": "Date",
+        "ocean_ph_yearly_average": "pH yearly average",
+        "ocean_ph": "pH"
     },
     "microplastics": {
         "year": "Year",

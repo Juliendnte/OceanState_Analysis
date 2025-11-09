@@ -1,29 +1,20 @@
-from pathlib import Path
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-from loguru import logger
-from tqdm import tqdm
-import typer
+def plot_ph_evolution(df):
+    """Crée un graphique de l'évolution du pH."""
+    plt.figure(figsize=(12, 6))
+    sns.lineplot(data=df, x='date', y='ph')
+    plt.title("Évolution du pH de l'eau de mer")
+    plt.xlabel("Année")
+    plt.ylabel("pH")
+    return plt
 
-from oceanstate_analysis.config import FIGURES_DIR, PROCESSED_DATA_DIR
-
-app = typer.Typer()
-
-
-@app.command()
-def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
-    input_path: Path = PROCESSED_DATA_DIR / "dataset.csv",
-    output_path: Path = FIGURES_DIR / "plot.png",
-    # -----------------------------------------
-):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Generating plot from data...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Plot generation complete.")
-    # -----------------------------------------
-
-
-if __name__ == "__main__":
-    app()
+def plot_plastic_accumulation(df):
+    """Crée un graphique de l'accumulation des microplastiques."""
+    plt.figure(figsize=(12, 6))
+    sns.lineplot(data=df, x='year', y='amount', hue='Entity')
+    plt.title("Accumulation des microplastiques dans l'océan")
+    plt.xlabel("Année")
+    plt.ylabel("Quantité accumulée")
+    return plt
