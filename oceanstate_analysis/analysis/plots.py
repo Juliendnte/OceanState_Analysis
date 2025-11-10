@@ -1,13 +1,18 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
+import pandas as pd
 
 def plot_ph_evolution(df):
-    """Crée un graphique de l'évolution du pH."""
     plt.figure(figsize=(12, 6))
-    sns.lineplot(data=df, x='date', y='ph')
+    plt.plot(pd.to_datetime(df['Date']), df['pH yearly average'], label='pH moyen annuel')
+    plt.plot(pd.to_datetime(df['Date']), df['pH'], label='pH')
     plt.title("Évolution du pH de l'eau de mer")
-    plt.xlabel("Année")
+    plt.xlabel("Date")
     plt.ylabel("pH")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
     return plt
 
 def plot_plastic_accumulation(df):
