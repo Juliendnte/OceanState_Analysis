@@ -11,3 +11,6 @@ pathlib
 pandas
 matplotlib
 seaborn
+xarray
+netCDF4
+copernicusmarine

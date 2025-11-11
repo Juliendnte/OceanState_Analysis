@@ -1,5 +1,5 @@
 import pandas as pd
-from .config import URLS, REQUEST_OPTIONS, COLUMN_NAMES
+from .config import URLS, REQUEST_OPTIONS, COLUMN_NAMES, RAW_DATA_FILES
 
 def load_and_clean_ph_data()->pd.DataFrame:
     """Charge et nettoie les données du pH de l'eau de mer."""
@@ -19,4 +19,14 @@ def load_and_clean_plastic_data() -> pd.DataFrame:
     column_mapping = COLUMN_NAMES["microplastics"]
     df.rename(columns=column_mapping, inplace=True)
 
+    return df
+
+def load_and_clean_nc_data() -> pd.DataFrame:
+    import xarray as xr
+    import warnings
+    warnings.filterwarnings('ignore')
+
+    ds = xr.open_dataset(RAW_DATA_FILES['nc_file'])
+    df = ds.to_dataframe()
+    df = df.reset_index()
     return df
