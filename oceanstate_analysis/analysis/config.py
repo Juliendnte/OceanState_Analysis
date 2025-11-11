@@ -10,6 +10,10 @@ PROCESSED_DATA_DIR = DATA_DIR / "processed"
 EXTERNAL_DATA_DIR = DATA_DIR / "external"
 INTERIM_DATA_DIR = DATA_DIR / "interim"
 
+# Création des répertoires s'ils n'existent pas
+for dir_path in [RAW_DATA_DIR, PROCESSED_DATA_DIR, EXTERNAL_DATA_DIR, INTERIM_DATA_DIR]:
+    dir_path.mkdir(parents=True, exist_ok=True)
+
 # URLs des données
 URLS = {
     "seawater_ph": "https://ourworldindata.org/grapher/seawater-ph.csv?v=1&csvType=full&useColumnShortNames=true",
