@@ -10,21 +10,29 @@ def load_and_clean_ph_data()->pd.DataFrame:
     return df
 
 
-def load_and_clean_plastic_data() -> pd.DataFrame:
+def load_and_clean_microplastic_data() -> pd.DataFrame:
     df = pd.read_csv(URLS["microplastics"], storage_options=REQUEST_OPTIONS)
 
-    # Renommage des colonnes
     column_mapping = COLUMN_NAMES["microplastics"]
     df.rename(columns=column_mapping, inplace=True)
 
     return df
 
-def load_and_clean_nc_data() -> pd.DataFrame:
+
+def load_and_clean_macroplastic_data() -> pd.DataFrame:
+    df = pd.read_csv(URLS["macroplastics"], storage_options=REQUEST_OPTIONS)
+
+    column_mapping = COLUMN_NAMES["macroplastics"]
+    df.rename(columns=column_mapping, inplace=True)
+
+    return df
+
+def load_and_clean_depth_data() -> pd.DataFrame:
     import xarray as xr
     import warnings
     warnings.filterwarnings('ignore')
 
-    ds = xr.open_dataset(RAW_DATA_FILES['nc_file'])
+    ds = xr.open_dataset(RAW_DATA_FILES['depth_file'])
     df = ds.to_dataframe()
     df = df.reset_index()
     return df

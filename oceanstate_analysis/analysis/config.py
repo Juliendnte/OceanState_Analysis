@@ -29,11 +29,12 @@ REQUEST_OPTIONS = {
 # Noms des fichiers de données brutes
 RAW_DATA_FILES = {
     "sea_level_rise": RAW_DATA_DIR / "sea-level-rise.csv",
-    "nc_file" : RAW_DATA_DIR / "glo12_rg_1m-m_202206-202206_2D_hcst.nc"
+    "depth_file" : RAW_DATA_DIR / "glo12_rg_1m-m_202206-202206_2D_hcst.nc"
 }
 
 PROCESSED_DATA_FILES = {
-    "sea_level_rise": PROCESSED_DATA_DIR / "sea-level-rise.csv"
+    "sea_level_rise": PROCESSED_DATA_DIR / "sea-level-rise.csv",
+    "plastics": PROCESSED_DATA_DIR / "plastics.csv"
 }
 
 INTERIM_DATA_FILES = {
@@ -50,11 +51,11 @@ COLUMN_NAMES = {
         "ocean_ph": "pH"
     },
     "microplastics": {
-        "year": "Year",
-        "amount": "Accumulated ocean plastic: Microplastics (<0.5cm)"
+        "Year": "year",
+        "Accumulated ocean plastic: Microplastics (<0.5cm)": "microplastics"
     },
     "macroplastics": {
-        "year": "Year",
-        "amount": "Accumulated ocean plastic: Macroplastics (>0.5cm)"
+        "Year": "year",
+        "Accumulated ocean plastic: Macroplastics (>0.5cm)": "macroplastics"
     }
 }

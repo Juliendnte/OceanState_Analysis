@@ -4,7 +4,7 @@
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a>
 
-A project school to analys the evolution of ocean state
+A project school to analys the evolution of the ocean state
 
 ## Project Organization
 
@@ -28,8 +28,6 @@ A project school to analys the evolution of ocean state
 │
 ├── pyproject.toml     <- Project configuration file with package metadata for 
 │                         oceanstate_analysis and configuration for tools like black
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
 │
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
 │   └── figures        <- Generated graphics and figures to be used in reporting
