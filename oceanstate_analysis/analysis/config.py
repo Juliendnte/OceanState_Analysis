@@ -18,7 +18,9 @@ for dir_path in [RAW_DATA_DIR, PROCESSED_DATA_DIR, EXTERNAL_DATA_DIR, INTERIM_DA
 URLS = {
     "seawater_ph": "https://ourworldindata.org/grapher/seawater-ph.csv?v=1&csvType=full&useColumnShortNames=true",
     "microplastics": "https://ourworldindata.org/grapher/microplastics-in-ocean.csv?v=1&csvType=full&useColumnShortNames=true",
-    "macroplastics": "https://ourworldindata.org/grapher/macroplastics-in-ocean.csv?v=1&csvType=full&useColumnShortNames=true"
+    "macroplastics": "https://ourworldindata.org/grapher/macroplastics-in-ocean.csv?v=1&csvType=full&useColumnShortNames=true",
+    "heat":"https://ourworldindata.org/grapher/ocean-heat-top-2000m.csv?v=1&csvType=filtered&useColumnShortNames=true&overlay=download-data"
+
 }
 
 # Options pour les requêtes HTTP

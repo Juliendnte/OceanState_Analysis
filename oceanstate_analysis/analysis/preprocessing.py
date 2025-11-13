@@ -43,6 +43,11 @@ def load_and_clean_sealevel_data():
 
     return df
 
+def load_and_clean_heat_data():
+    """Charge et nettoie les données du niveau de la mer."""
+    df = pd.read_csv(URLS["heat"], storage_options=REQUEST_OPTIONS)
+    return df
+
 def load_and_clean_oceanwarning_data():
     df = pd.read_excel(RAW_DATA_FILES["oceanwarning"])
 
