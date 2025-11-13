@@ -40,9 +40,18 @@ def load_and_clean_depth_data() -> pd.DataFrame:
 def load_and_clean_sealevel_data():
     """Charge et nettoie les données du niveau de la mer."""
     df = pd.read_csv(RAW_DATA_FILES["sea_level"])
+
     return df
 
 def load_and_clean_heat_data():
     """Charge et nettoie les données du niveau de la mer."""
     df = pd.read_csv(URLS["heat"], storage_options=REQUEST_OPTIONS)
+    return df
+
+def load_and_clean_oceanwarning_data():
+    df = pd.read_excel(RAW_DATA_FILES["oceanwarning"])
+
+    column_mapping = COLUMN_NAMES["oceanwarning"]
+    df.rename(columns=column_mapping, inplace=True)
+
     return df
