@@ -36,3 +36,10 @@ def load_and_clean_depth_data() -> pd.DataFrame:
     df = ds.to_dataframe()
     df = df.reset_index()
     return df
+
+def load_and_clean_sealevel_data():
+    """Charge et nettoie les données du niveau de la mer."""
+    df = pd.read_csv(RAW_DATA_FILES["sea_level"])
+
+
+    return df

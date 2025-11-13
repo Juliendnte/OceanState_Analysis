@@ -28,17 +28,17 @@ REQUEST_OPTIONS = {
 
 # Noms des fichiers de données brutes
 RAW_DATA_FILES = {
-    "sea_level_rise": RAW_DATA_DIR / "sea-level-rise.csv",
+    "sea_level": RAW_DATA_DIR / "sea-level.csv",
     "depth_file" : RAW_DATA_DIR / "glo12_rg_1m-m_202206-202206_2D_hcst.nc"
 }
 
 PROCESSED_DATA_FILES = {
-    "sea_level_rise": PROCESSED_DATA_DIR / "sea-level-rise.csv",
+    "sea_level": PROCESSED_DATA_DIR / "sea-level.csv",
     "plastics": PROCESSED_DATA_DIR / "plastics.csv"
 }
 
 INTERIM_DATA_FILES = {
-    "sea_level_rise": INTERIM_DATA_DIR / "sea-level-rise.csv"
+    "sea_level": INTERIM_DATA_DIR / "sea-level.csv"
 }
 
 EXTERNAL_DATA_FILES = {}
