@@ -59,3 +59,15 @@ def load_and_clean_oceanwarning_data():
 def load_and_clean_acid_data():
     df = pd.read_csv(RAW_DATA_FILES["acid"])
     return df
+
+def load_and_clean_plastic_waste_data():
+    df = pd.read_csv(RAW_DATA_FILES["plastic_waste"])
+    return df
+
+def load_and_clean_plastic_waste_ocean_data():
+    df = pd.read_csv(URLS["plastic_waste_ocean"], storage_options=REQUEST_OPTIONS)
+    return df
+
+def load_and_clean_plastic_production_data():
+    df = pd.read_csv(URLS["platic_production"], storage_options=REQUEST_OPTIONS)
+    return df
