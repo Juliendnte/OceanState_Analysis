@@ -55,3 +55,7 @@ def load_and_clean_oceanwarning_data():
     df.rename(columns=column_mapping, inplace=True)
 
     return df
+
+def load_and_clean_acid_data():
+    df = pd.read_csv(RAW_DATA_FILES["acid"])
+    return df

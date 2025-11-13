@@ -32,7 +32,8 @@ REQUEST_OPTIONS = {
 RAW_DATA_FILES = {
     "sea_level": RAW_DATA_DIR / "sea-level.csv",
     "depth_file" : RAW_DATA_DIR / "glo12_rg_1m-m_202206-202206_2D_hcst.nc",
-    "oceanwarning": RAW_DATA_DIR / "oceanwarmingannualnoaa-copy.xlsx"
+    "oceanwarning": RAW_DATA_DIR / "oceanwarmingannualnoaa-copy.xlsx",
+    "acid": RAW_DATA_DIR / "project_of_ocean_acidification.csv"
 }
 
 PROCESSED_DATA_FILES = {
