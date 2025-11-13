@@ -19,7 +19,9 @@ URLS = {
     "seawater_ph": "https://ourworldindata.org/grapher/seawater-ph.csv?v=1&csvType=full&useColumnShortNames=true",
     "microplastics": "https://ourworldindata.org/grapher/microplastics-in-ocean.csv?v=1&csvType=full&useColumnShortNames=true",
     "macroplastics": "https://ourworldindata.org/grapher/macroplastics-in-ocean.csv?v=1&csvType=full&useColumnShortNames=true",
-    "heat":"https://ourworldindata.org/grapher/ocean-heat-top-2000m.csv?v=1&csvType=filtered&useColumnShortNames=true&overlay=download-data"
+    "heat":"https://ourworldindata.org/grapher/ocean-heat-top-2000m.csv?v=1&csvType=filtered&useColumnShortNames=true&overlay=download-data",
+    "plastic_waste_ocean": "https://ourworldindata.org/grapher/share-of-global-plastic-waste-emitted-to-the-ocean.csv?v=1&csvType=full&useColumnShortNames=true",
+    "platic_production": "https://ourworldindata.org/grapher/global-plastics-production.csv?v=1&csvType=full&useColumnShortNames=true"
 
 }
 
@@ -33,7 +35,8 @@ RAW_DATA_FILES = {
     "sea_level": RAW_DATA_DIR / "sea-level.csv",
     "depth_file" : RAW_DATA_DIR / "glo12_rg_1m-m_202206-202206_2D_hcst.nc",
     "oceanwarning": RAW_DATA_DIR / "oceanwarmingannualnoaa-copy.xlsx",
-    "acid": RAW_DATA_DIR / "project_of_ocean_acidification.csv"
+    "acid": RAW_DATA_DIR / "project_of_ocean_acidification.csv",
+    "plastic_waste": RAW_DATA_DIR / "plastic-waste-imports.csv"
 }
 
 PROCESSED_DATA_FILES = {
