@@ -11,3 +11,5 @@ pathlib
 pandas
 matplotlib
 seaborn
+ipykernel
+pandas

@@ -29,7 +29,7 @@ REQUEST_OPTIONS = {
 
 # Noms des fichiers de données brutes
 RAW_DATA_FILES = {
-    "sea_level_rise": RAW_DATA_DIR / "sea-level-rise.csv"
+    "sea_level": RAW_DATA_DIR / "sea-level.csv"
 }
 
 PROCESSED_DATA_FILES = {
