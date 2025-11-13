@@ -29,7 +29,8 @@ REQUEST_OPTIONS = {
 # Noms des fichiers de données brutes
 RAW_DATA_FILES = {
     "sea_level": RAW_DATA_DIR / "sea-level.csv",
-    "depth_file" : RAW_DATA_DIR / "glo12_rg_1m-m_202206-202206_2D_hcst.nc"
+    "depth_file" : RAW_DATA_DIR / "glo12_rg_1m-m_202206-202206_2D_hcst.nc",
+    "oceanwarning": RAW_DATA_DIR / "oceanwarmingannualnoaa-copy.xlsx"
 }
 
 PROCESSED_DATA_FILES = {
@@ -49,6 +50,14 @@ COLUMN_NAMES = {
         "Day": "Date",
         "ocean_ph_yearly_average": "pH yearly average",
         "ocean_ph": "pH"
+    },
+    "oceanwarning": {
+        "WO": "Change in World Ocean Heat Content (ZJ, relative to 1957, 5-year running average)",
+        "WOse": "Standard Error of World Ocean Heat Content (ZJ, ±se, 5-year running average)",
+        "NH": "Change in Northern Hemisphere Ocean Heat Content (ZJ, relative to 1957, 5-year running average)",
+        "NHse": "Standard error for the Northern Hemisphere OHC in ZJ",
+        "SH": "Change in Southern Hemisphere Ocean Heat Content (ZJ, relative to 1957, 5-year running average)",
+        "SHse": "Standard error for the Southern Hemisphere OHC in ZJ"
     },
     "microplastics": {
         "Year": "year",
