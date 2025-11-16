@@ -9,7 +9,6 @@ A project school to analys the evolution of the ocean state
 ## Project Organization
 
 ```
-├── LICENSE            <- Open-source license if one is chosen
 ├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
@@ -43,10 +42,6 @@ A project school to analys the evolution of the ocean state
     │
     ├── config.py               <- Store useful variables and configuration
     │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
     ├── modeling                
     │   ├── __init__.py 
     │   ├── predict.py          <- Code to run model inference with trained models          
@@ -54,10 +49,9 @@ A project school to analys the evolution of the ocean state
     │
     ├── plots.py                <- Code to create visualizations
     │
-    ├── preprocessing.py
-    |
+    ├── preprocessing.py        <- Code to preprocess data
     │
-    └── utis.py
+    └── utis.py                 <- Code to help with common tasks
 ```
 
 --------
