@@ -8,3 +8,4 @@ plastic waste import https://ourworldindata.org/explorers/plastic-pollution?tab=
 sealevel 
 heat
 glacier melting https://ourworldindata.org/grapher/mass-us-glaciers.csv?v=1&csvType=full&useColumnShortNames=true
+red list index https://ourworldindata.org/grapher/red-list-index.csv?v=1&csvType=full&useColumnShortNames=true
