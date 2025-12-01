@@ -21,3 +21,4 @@ ipykernel
 openpyxl
 plotly
 streamlit
+scipy

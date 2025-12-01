@@ -20,7 +20,8 @@ URLS = {
     "heat":"https://ourworldindata.org/grapher/ocean-heat-top-2000m.csv?v=1&csvType=filtered&useColumnShortNames=true&overlay=download-data",
     "plastic_waste_ocean": "https://ourworldindata.org/grapher/share-of-global-plastic-waste-emitted-to-the-ocean.csv?v=1&csvType=full&useColumnShortNames=true",
     "platic_production": "https://ourworldindata.org/grapher/global-plastics-production.csv?v=1&csvType=full&useColumnShortNames=true",
-    "red_list_index" : "https://ourworldindata.org/grapher/red-list-index.csv?v=1&csvType=full&useColumnShortNames=true"
+    "red_list_index" : "https://ourworldindata.org/grapher/red-list-index.csv?v=1&csvType=full&useColumnShortNames=true",
+    "CO2_emission": "https://ourworldindata.org/grapher/annual-co-emissions-by-region.csv?v=1&csvType=full&useColumnShortNames=true"
 }
 
 # Options pour les requêtes HTTP
