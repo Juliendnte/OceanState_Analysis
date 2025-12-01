@@ -7,5 +7,5 @@ global plastic production https://ourworldindata.org/grapher/global-plastics-pro
 plastic waste import https://ourworldindata.org/explorers/plastic-pollution?tab=line&facet=none&country=OWID_ASI~OWID_AFR~OWID_EUR~OWID_NAM~OWID_SAM&hideControls=true&Metric=Waste+trade&Sub-metric=Imports&Per+capita=false&Share+of+world+total=false&Source=United+Nations+Comtrade+Database+%282023%29
 sealevel 
 heat
-glacier melting https://ourworldindata.org/grapher/mass-us-glaciers.csv?v=1&csvType=full&useColumnShortNames=true
-red list index https://ourworldindata.org/grapher/red-list-index.csv?v=1&csvType=full&useColumnShortNames=true
+glacier melting https://ourworldindata.org/grapher/mass-us-glaciers
+red list index https://ourworldindata.org/grapher/red-list-index
