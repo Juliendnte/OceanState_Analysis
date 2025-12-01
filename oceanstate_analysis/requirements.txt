@@ -20,3 +20,4 @@ seaborn
 ipykernel
 openpyxl
 plotly
+streamlit

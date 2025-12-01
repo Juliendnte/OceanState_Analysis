@@ -71,3 +71,7 @@ def load_and_clean_plastic_waste_ocean_data():
 def load_and_clean_plastic_production_data():
     df = pd.read_csv(URLS["platic_production"], storage_options=REQUEST_OPTIONS)
     return df
+
+def load_and_clean_CO2_emission_data():
+    df = pd.read_csv(URLS["CO2_emission"], storage_options=REQUEST_OPTIONS)
+    return df
