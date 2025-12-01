@@ -75,3 +75,11 @@ def load_and_clean_plastic_production_data():
 def load_and_clean_CO2_emission_data():
     df = pd.read_csv(URLS["CO2_emission"], storage_options=REQUEST_OPTIONS)
     return df
+
+def load_and_clean_red_list_index_data():
+    df = pd.read_csv(URLS["red_list_index"], storage_options=REQUEST_OPTIONS)
+    return df
+
+def load_and_clean_glaciers_data():
+    df = pd.read_csv(RAW_DATA_FILES["glaciers_melting"])
+    return df
