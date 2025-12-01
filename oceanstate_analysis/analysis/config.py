@@ -21,7 +21,9 @@ URLS = {
     "macroplastics": "https://ourworldindata.org/grapher/macroplastics-in-ocean.csv?v=1&csvType=full&useColumnShortNames=true",
     "heat":"https://ourworldindata.org/grapher/ocean-heat-top-2000m.csv?v=1&csvType=filtered&useColumnShortNames=true&overlay=download-data",
     "plastic_waste_ocean": "https://ourworldindata.org/grapher/share-of-global-plastic-waste-emitted-to-the-ocean.csv?v=1&csvType=full&useColumnShortNames=true",
-    "platic_production": "https://ourworldindata.org/grapher/global-plastics-production.csv?v=1&csvType=full&useColumnShortNames=true"
+    "platic_production": "https://ourworldindata.org/grapher/global-plastics-production.csv?v=1&csvType=full&useColumnShortNames=true",
+    "glacier melting" : "https://ourworldindata.org/grapher/mass-us-glaciers.csv?v=1&csvType=full&useColumnShortNames=true",
+    "red list index" : "https://ourworldindata.org/grapher/red-list-index.csv?v=1&csvType=full&useColumnShortNames=true"
 
 }
 
@@ -37,6 +39,7 @@ RAW_DATA_FILES = {
     "oceanwarning": RAW_DATA_DIR / "oceanwarmingannualnoaa-copy.xlsx",
     "acid": RAW_DATA_DIR / "project_of_ocean_acidification.csv",
     "plastic_waste": RAW_DATA_DIR / "plastic-waste-imports.csv"
+
 }
 
 PROCESSED_DATA_FILES = {
