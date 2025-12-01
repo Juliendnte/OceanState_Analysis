@@ -5,7 +5,7 @@ project_of_ocean_acidification https://www.kaggle.com/datasets/jayasurya666/glob
 waste plastic ocean https://ourworldindata.org/grapher/share-of-global-plastic-waste-emitted-to-the-ocean
 global plastic production https://ourworldindata.org/grapher/global-plastics-production
 plastic waste import https://ourworldindata.org/explorers/plastic-pollution?tab=line&facet=none&country=OWID_ASI~OWID_AFR~OWID_EUR~OWID_NAM~OWID_SAM&hideControls=true&Metric=Waste+trade&Sub-metric=Imports&Per+capita=false&Share+of+world+total=false&Source=United+Nations+Comtrade+Database+%282023%29
-sealevel 
-heat
-glacier melting https://ourworldindata.org/grapher/mass-us-glaciers.csv?v=1&csvType=full&useColumnShortNames=true
-red list index https://ourworldindata.org/grapher/red-list-index.csv?v=1&csvType=full&useColumnShortNames=true
+sealevel : https://ourworldindata.org/grapher/sea-level
+heat : https://ourworldindata.org/grapher/ocean-heat-top-2000m
+glacier melting https://ourworldindata.org/grapher/mass-us-glaciers
+red list index https://ourworldindata.org/grapher/red-list-index
