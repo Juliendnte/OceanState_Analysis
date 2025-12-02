@@ -22,3 +22,4 @@ openpyxl
 plotly
 streamlit
 scipy
+statsmodels
