@@ -192,7 +192,6 @@ def plot_relation_acidification_redlist(df):
 
 def plot_relation_glaciermelting_heat(df):
     # Calcul de la corrélation
-    correlation, p_value = pearsonr(df["Mean cumulative mass balance"], df["ocean_heat_avg"])
 
     fig = go.Figure()
 
@@ -216,7 +215,7 @@ def plot_relation_glaciermelting_heat(df):
 
     # Layout double axe avec corrélation dans le titre
     fig.update_layout(
-        title=f"Lien entre réchauffement des océans et fonte des glaciers<br>Corrélation: r = {correlation:.4f} (p-value: {p_value:.2e})",
+        title=f"Lien entre réchauffement des océans et fonte des glaciers",
         xaxis=dict(title="Année"),
         yaxis=dict(title="Masse cumulée des glaciers (mm w.e.)", side="left"),
         yaxis2=dict(title="Chaleur océanique (10^22 J)", overlaying="y", side="right"),
@@ -430,4 +429,30 @@ def plot_redlist(df):
                label=f'Moyenne: {latest_data["_15_5_1__er_rsk_lst"].mean():.2f}')
     ax.legend()
     plt.tight_layout()
+    return fig
+
+def plot_globalwarn(df):
+    # Filtrer pour l'entité "World"
+    df_world = df[df["Entity"] == "World"]
+
+    # Créer le graphique
+    fig = px.line(
+        df_world,
+        x="Year",
+        y="near_surface_temperature_anomaly",
+        title="Évolution de la température terrestre - Monde"
+    )
+
+    for trace in fig.data:
+        trace.name = "Anomalie de température"
+        trace.line.color = "#d62728"
+
+        # Mettre à jour layout
+    fig.update_layout(
+        xaxis_title="Année",
+        yaxis_title="Anomalie de température (°C)",
+        legend_title_text="Mesure",
+        margin={"r": 0, "t": 40, "l": 0, "b": 0}
+    )
+
     return fig

@@ -19,7 +19,8 @@ from .reports import (
     report_glaciermelting,
     report_glaciermelting_sealevel_correlation,
     report_redlist,
-    report_acidification_redlist_correlation
+    report_acidification_redlist_correlation,
+    report_global_warn
 )
 
 __all__ = [
@@ -38,5 +39,6 @@ __all__ = [
     'report_glaciermelting',
     'report_glaciermelting_sealevel_correlation',
     'report_redlist',
-    'report_acidification_redlist_correlation'
+    'report_acidification_redlist_correlation',
+    'report_global_warn'
 ]

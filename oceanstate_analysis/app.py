@@ -115,7 +115,8 @@ elif page == "📊 Projet & Analyses":
             display_correlation_metrics,
             create_summary_stats,
             report_acidification_redlist_correlation,
-            report_redlist
+            report_redlist,
+            report_global_warn
         )
         reports_available = True
         st.success("✅ Module de rapports chargé avec succès")
@@ -147,9 +148,177 @@ elif page == "📊 Projet & Analyses":
         with tab1:
             st.markdown("### 📈 Réchauffement climatique global")
 
-            st.markdown("""
-            Cette section analyse l'évolution du réchauffement climatique global et ses impacts.
-            """)
+            if reports_available:
+                if st.button("🌡️ Générer le rapport de réchauffement global", key="global_warming"):
+                    try:
+                        with st.spinner("Génération du rapport de réchauffement climatique..."):
+                            df, fig = report_global_warn()
+
+                            # Affichage du graphique (adapter selon le type de figure retournée)
+                            if hasattr(fig, 'show'):  # Figure Plotly
+                                st.plotly_chart(fig, use_container_width=True)
+                            else:  # Figure Matplotlib
+                                st.pyplot(fig)
+
+                            # Statistiques de réchauffement global
+                            st.subheader("🌡️ Statistiques de réchauffement global")
+
+                            # Identifier la colonne de température (adapter selon vos données)
+                            temp_cols = [col for col in df.columns if
+                                         'temp' in col.lower() or 'anomaly' in col.lower() or
+                                         'warming' in col.lower() or 'temperature' in col.lower()]
+
+                            if temp_cols:
+                                temp_col = temp_cols[0]
+
+                                col1, col2, col3 = st.columns(3)
+
+                                with col1:
+                                    st.metric(
+                                        "🌡️ Température min",
+                                        f"{df[temp_col].min():.2f}°C"
+                                    )
+                                with col2:
+                                    st.metric(
+                                        "🌡️ Température max",
+                                        f"{df[temp_col].max():.2f}°C"
+                                    )
+                                with col3:
+                                    st.metric(
+                                        "🌡️ Moyenne",
+                                        f"{df[temp_col].mean():.2f}°C"
+                                    )
+
+                                # Calcul de la tendance de réchauffement
+                                if len(df) >= 2:
+                                    warming_trend = df[temp_col].iloc[-1] - df[temp_col].iloc[0]
+                                    annual_warming = warming_trend / (len(df) - 1)
+
+                                    # Métriques de tendance
+                                    col1, col2 = st.columns(2)
+                                    with col1:
+                                        trend_color = "🔴" if warming_trend > 0 else "🔵"
+                                        st.metric(
+                                            f"{trend_color} Réchauffement total",
+                                            f"{warming_trend:+.2f}°C",
+                                            help="Variation totale sur la période"
+                                        )
+                                    with col2:
+                                        st.metric(
+                                            "📈 Réchauffement/an",
+                                            f"{annual_warming:+.3f}°C/an",
+                                            help="Réchauffement moyen annuel"
+                                        )
+
+                                    # Alertes climatiques
+                                    st.subheader("🚨 Alertes climatiques")
+
+                                    current_temp = df[temp_col].iloc[-1]
+
+                                    if warming_trend > 1.5:
+                                        st.error("🚨 **ALERTE CRITIQUE :** Réchauffement > 1.5°C détecté ! Seuil de l'Accord de Paris dépassé.")
+                                    elif warming_trend > 1.0:
+                                        st.warning("⚠️ **ALERTE MAJEURE :** Réchauffement > 1°C. Approche du seuil critique de 1.5°C.")
+                                    elif warming_trend > 0.5:
+                                        st.warning("⚡ **SURVEILLANCE :** Réchauffement significatif détecté.")
+                                    else:
+                                        st.info("📊 **INFORMATION :** Variation climatique dans les limites observées.")
+
+                                    # Prédictions et scénarios
+                                    st.subheader("🔮 Projections climatiques")
+
+                                    # Projection linéaire simple (à titre indicatif)
+                                    years_to_project = 30
+                                    projected_warming = current_temp + (annual_warming * years_to_project)
+                                    current_year = df.iloc[-1, 0] if 'year' in df.columns or 'Year' in df.columns else "actuelle"
+
+                                    st.info(f"""
+                                    **📊 Projections basées sur la tendance actuelle :**
+                                    - Réchauffement actuel : {current_temp:+.2f}°C (année {current_year})
+                                    - Projection 2050 : {projected_warming:+.2f}°C
+                                    - Rythme actuel : {annual_warming:+.3f}°C/décennie
+                                    
+                                    **⚠️ Note :** Projection linéaire simplifiée, ne tenant pas compte 
+                                    des rétroactions climatiques complexes.
+                                    """)
+
+                                    # Comparaisons internationales
+                                    st.subheader("🌍 Contexte international")
+
+                                    col1, col2 = st.columns(2)
+                                    with col1:
+                                        st.metric(
+                                            "🎯 Objectif Paris 1.5°C",
+                                            "1.50°C",
+                                            delta=f"{current_temp - 1.5:+.2f}°C",
+                                            help="Écart par rapport à l'objectif de l'Accord de Paris"
+                                        )
+                                    with col2:
+                                        st.metric(
+                                            "🎯 Limite Paris 2°C",
+                                            "2.00°C",
+                                            delta=f"{current_temp - 2.0:+.2f}°C",
+                                            help="Écart par rapport à la limite de l'Accord de Paris"
+                                        )
+
+                                    # Impacts sectoriels prévisibles
+                                    st.subheader("🌊 Impacts océaniques prévisibles")
+
+                                    impact_data = []
+                                    if current_temp > 1.0:
+                                        impact_data.append("🔴 Accélération de la fonte des glaciers polaires")
+                                        impact_data.append("🔴 Intensification de l'acidification océanique")
+                                        impact_data.append("🔴 Élévation accrue du niveau des mers")
+                                    if current_temp > 1.5:
+                                        impact_data.append("🚨 Risque de fonte irréversible des calottes glaciaires")
+                                        impact_data.append("🚨 Perturbations majeures des courants océaniques")
+                                        impact_data.append("🚨 Stress thermique critique pour les coraux")
+
+                                    if impact_data:
+                                        for impact in impact_data:
+                                            st.markdown(f"- {impact}")
+                                    else:
+                                        st.success("✅ Impacts océaniques encore limités au niveau actuel de réchauffement")
+
+                            # Données détaillées
+                            with st.expander("📋 Données de réchauffement détaillées"):
+                                # Ajout d'informations contextuelles
+                                if temp_cols:
+                                    df_display = df.copy()
+
+                                    # Catégorisation des niveaux de réchauffement
+                                    if temp_col in df_display.columns:
+                                        df_display['Niveau_Alerte'] = df_display[temp_col].apply(
+                                            lambda x: "🚨 Critique" if x > 1.5 else
+                                            "🔴 Alarmant" if x > 1.0 else
+                                            "🟠 Préoccupant" if x > 0.5 else
+                                            "🟡 Surveillance" if x > 0 else "🟢 Normal"
+                                        )
+
+                                st.dataframe(df_display)
+
+                            # Contexte scientifique
+                            st.subheader("📚 Contexte scientifique")
+                            st.markdown("""
+                            **🎯 Accords internationaux :**
+                            - **Accord de Paris (2015) :** Limiter le réchauffement à 1.5°C (idéal) ou 2°C (maximum)
+                            - **GIEC :** Rapports scientifiques de référence sur le changement climatique
+                            
+                            **🔬 Méthodes de mesure :**
+                            - Anomalies de température par rapport à une période de référence (généralement 1851-1900)
+                            - Données combinées : stations météo, bouées, satellites
+                            - Moyennes globales pondérées par surface
+                            
+                            **⚠️ Conséquences océaniques du réchauffement :**
+                            - Expansion thermique des océans → élévation du niveau
+                            - Fonte des glaces continentales → apport d'eau douce
+                            - Modification des courants thermohalins → perturbations climatiques régionales
+                            """)
+
+                    except Exception as e:
+                        st.error(f"❌ Erreur : {e}")
+                        import traceback
+                        st.code(traceback.format_exc())
 
         with tab2:
             st.markdown("### 🌊 Hausse de la température des océans")
@@ -209,15 +378,25 @@ elif page == "📊 Projet & Analyses":
                 )
 
                 if glacier_option == "🧊 Évolution de la fonte":
+
                     if st.button("🧊 Générer rapport fonte des glaces", key="glaciers_alone"):
                         try:
                             with st.spinner("Génération du rapport de fonte des glaces..."):
                                 df, fig = report_glaciermelting()
-                                st.pyplot(fig)
+
+                                # Vérifier le type de figure et afficher correctement
+                                if hasattr(fig, 'show'):  # Figure Plotly
+                                    st.plotly_chart(fig, use_container_width=True)
+                                else:  # Figure Matplotlib
+                                    st.pyplot(fig)
 
                                 # Statistiques glaciers
                                 st.subheader("🧊 Statistiques de fonte")
-                                glacier_col = [col for col in df.columns if 'mass' in col.lower() or 'glacier' in col.lower()][0] if any('mass' in col.lower() or 'glacier' in col.lower() for col in df.columns) else df.columns[1]
+                                glacier_col = [col for col in df.columns if
+                                               'mass' in col.lower() or 'glacier' in col.lower() or 'balance' in col.lower()][
+                                    0] if any(
+                                    'mass' in col.lower() or 'glacier' in col.lower() or 'balance' in col.lower() for
+                                    col in df.columns) else df.columns[1]
 
                                 col1, col2, col3 = st.columns(3)
                                 with col1:
@@ -234,7 +413,10 @@ elif page == "📊 Projet & Analyses":
                         except Exception as e:
                             st.error(f"❌ Erreur : {e}")
                             import traceback
+
                             st.code(traceback.format_exc())
+
+
 
                 elif glacier_option == "🔗 Corrélation Glaciers ↔ Chaleur":
                     if st.button("🔗 Générer corrélation Glaciers-Chaleur", key="glaciers_heat"):

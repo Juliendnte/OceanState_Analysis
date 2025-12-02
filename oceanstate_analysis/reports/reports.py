@@ -22,7 +22,8 @@ from analysis.preprocessing import (
     load_and_clean_heat_data,
     load_and_clean_sealevel_data,
     load_and_clean_glaciers_data,
-    load_and_clean_red_list_index_data
+    load_and_clean_red_list_index_data,
+    load_and_clean_global_warning_data
 )
 
 from analysis.plots import (
@@ -40,7 +41,8 @@ from analysis.plots import (
     plot_sealevel,
     plot_relation_glaciermelting_sealevel,
     plot_glaciermelting,
-    plot_redlist
+    plot_redlist,
+    plot_globalwarn
 )
 
 # Configuration globale des graphiques
@@ -82,8 +84,10 @@ def report_glaciermelting_sealevel_correlation():
 
     # Fusionner avec les glaciers sur Year
     df_combined = df_glaciers.merge(df_sea, on="Year", how="inner")
+    correlation = pearsonr(df_combined["Mean cumulative mass balance"],
+                           df_combined["sea_level_avg"])
     fig = plot_relation_glaciermelting_sealevel(df_combined)
-    return df_combined, fig
+    return df_combined, fig, correlation
 
 def report_glaciermelting():
     df = load_and_clean_glaciers_data()
@@ -112,6 +116,11 @@ def report_acidification_redlist_correlation():
     fig = plot_relation_acidification_redlist(df_merged)
     corr_coef, p_value = pearsonr(df_merged['Ocean_acidification(in_PH)'], df_merged['red_list_index'])
     return df_merged, fig, corr_coef
+
+def report_global_warn():
+    df = load_and_clean_global_warning_data()
+    fig = plot_globalwarn(df)
+    return df, fig
 
 def report_acidification_co2_correlation():
     """
@@ -357,24 +366,34 @@ def report_glacier_heat_correlation():
     Returns: DataFrame fusionné, figure plotly, corrélation
     """
     try:
-        df_glaciers = load_and_clean_glaciers_data()
-        df_heat = load_and_clean_heat_data()
 
-        # Fusion des données (à adapter selon vos colonnes)
-        # Supposons que les colonnes sont 'Year', 'Mean cumulative mass balance', 'ocean_heat_avg'
-        merged_df = df_glaciers.merge(df_heat, on='Year', how='inner')
+        df_heat = load_and_clean_heat_data()
+        df_glaciers = load_and_clean_glaciers_data()
+
+        # Calculer la moyenne des trois mesures de chaleur
+        df_heat["ocean_heat_avg"] = df_heat[[
+            "ocean_heat_content_noaa_2000m",
+            "ocean_heat_content_mri_2000m",
+            "ocean_heat_content_iap_2000m"
+        ]].mean(axis=1)
+
+        # Garder uniquement Year et la moyenne
+        df_heat = df_heat[["Year", "ocean_heat_avg"]]
+
+        # Fusionner avec les glaciers sur la colonne Year
+        df_combined = pd.merge(df_glaciers, df_heat, on="Year", how="inner")
 
         # Calcul de la corrélation
-        correlation = pearsonr(merged_df["Mean cumulative mass balance"],
-                               merged_df["ocean_heat_avg"])
+        correlation = pearsonr(df_combined["Mean cumulative mass balance"],
+                               df_combined["ocean_heat_avg"])
 
         # Création du graphique Plotly
         fig = go.Figure()
 
         # Glacier
         fig.add_trace(go.Scatter(
-            x=merged_df["Year"],
-            y=merged_df["Mean cumulative mass balance"],
+            x=df_combined["Year"],
+            y=df_combined["Mean cumulative mass balance"],
             name="Masse cumulée glaciers",
             yaxis="y1",
             line=dict(color="blue")
@@ -382,8 +401,8 @@ def report_glacier_heat_correlation():
 
         # Chaleur océanique
         fig.add_trace(go.Scatter(
-            x=merged_df["Year"],
-            y=merged_df["ocean_heat_avg"],
+            x=df_combined["Year"],
+            y=df_combined["ocean_heat_avg"],
             name="Chaleur océanique",
             yaxis="y2",
             line=dict(color="orange")
@@ -399,7 +418,7 @@ def report_glacier_heat_correlation():
             margin=dict(l=50, r=50, t=50, b=50)
         )
 
-        return merged_df, fig, correlation
+        return df_combined, fig, correlation
 
     except Exception as e:
         st.error(f"Erreur lors du chargement des données glaciers/chaleur: {e}")
