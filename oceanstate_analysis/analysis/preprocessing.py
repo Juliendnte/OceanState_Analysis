@@ -83,3 +83,7 @@ def load_and_clean_red_list_index_data():
 def load_and_clean_glaciers_data():
     df = pd.read_csv(RAW_DATA_FILES["glaciers_melting"])
     return df
+
+def load_and_clean_global_warning_data():
+    df = pd.read_csv(URLS["global_warning"], storage_options=REQUEST_OPTIONS)
+    return df
