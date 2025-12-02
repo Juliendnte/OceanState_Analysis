@@ -456,3 +456,22 @@ def plot_globalwarn(df):
     )
 
     return fig
+
+def plot_heat_variation(df):
+    df["OHC_avg"] = df[
+        ["ocean_heat_content_noaa_2000m",
+         "ocean_heat_content_mri_2000m",
+         "ocean_heat_content_iap_2000m"]
+    ].mean(axis=1)
+
+    df["OHC_change"] = df["OHC_avg"].diff()
+
+    fig = px.line(
+        df,
+        x="Year",
+        y="OHC_change",
+        title="Taux de variation annuel du contenu thermique de l’océan",
+        labels={"OHC_change": "Variation annuelle (10^22 Joules)", "Year": "Année"}
+    )
+
+    return fig

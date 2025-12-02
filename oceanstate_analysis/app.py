@@ -44,8 +44,7 @@ if page == "🏠 Accueil":
     # Problématique
     st.subheader("❓ Problématique")
     st.markdown("""
-    **Comment l'activité humaine transforme-t-elle nos océans et quelles sont les interconnexions 
-    entre ces différentes transformations ?**
+    **Comment l'état des océans a évolués entre le 20ème et le 21ème siècle ?**
     
     Notre analyse explore deux axes majeurs :
     - 🌡️ **Le réchauffement climatique** et ses conséquences sur les océans
@@ -478,15 +477,11 @@ elif page == "📊 Projet & Analyses":
 
         with tab4:
             st.markdown("### 📏 Montée du niveau des eaux")
-
             if reports_available:
-
                 if st.button("🌊 Générer rapport niveau des mers", key="sealevel"):
                     try:
                         with st.spinner("Génération du rapport niveau des mers..."):
                             df, fig = report_sealevel()
-
-                            # CORRECTION : Utiliser plotly_chart au lieu de pyplot
                             st.plotly_chart(fig, use_container_width=True)
 
                             # Statistiques niveau des mers
@@ -518,6 +513,7 @@ elif page == "📊 Projet & Analyses":
                         import traceback
 
                         st.code(traceback.format_exc())
+
 
 
     # ===== AXE JULIEN : POLLUTION ET ACIDIFICATION =====

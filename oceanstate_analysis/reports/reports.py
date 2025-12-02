@@ -42,7 +42,8 @@ from analysis.plots import (
     plot_relation_glaciermelting_sealevel,
     plot_glaciermelting,
     plot_redlist,
-    plot_globalwarn
+    plot_globalwarn,
+    plot_heat_variation
 )
 
 # Configuration globale des graphiques
@@ -423,6 +424,11 @@ def report_glacier_heat_correlation():
     except Exception as e:
         st.error(f"Erreur lors du chargement des données glaciers/chaleur: {e}")
         return None, None, None
+
+def report_variation_heat():
+    df = load_and_clean_heat_data()
+    fig = plot_heat_variation(df)
+    return df, fig
 
 def display_correlation_metrics(correlation, title="Corrélation"):
     """Affiche les métriques de corrélation dans Streamlit"""
